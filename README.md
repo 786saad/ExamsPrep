@@ -1,5 +1,8 @@
 ExamsPrep
 
+To access a sqlite-copy of the data set specified in the SQL exercises `DB Browser for SQLite` is required. 
+Open `File > Open Database` (make sure all file types are set to visible in the selection dialog)  and select the desired database 
+file contained in the `Datenbank` folder of each semester's directory.
 
 Since there aren't any sample solutions for these three subjects, we will simply make our own.
 
