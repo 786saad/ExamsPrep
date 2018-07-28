@@ -1,0 +1,1 @@
+alter table Kunde add email varchar(25)

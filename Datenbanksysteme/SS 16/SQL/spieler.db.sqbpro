@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="/Users/schilling/spieler.db" foreign_keys="1"/><window><current_tab id="0"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1326"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="0"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="spieler"/><default_encoding codec=""/><browsetable_info data="AAAABAAAAA4AcwBwAGkAZQBsAGUAcgAAAAAAAAAAAAAAAAAAAAAAAAAAAP//////////AAAAAP////8AAAAKAHMAcABpAGUAbAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//////////AAAAAP////8AAAAQAHAAbwBzAGkAdABpAG8AbgAAAAAAAAAAAAAAAAAAAAAAAAAAAP//////////AAAAAP////8AAAAYAG0AYQBuAG4AcwBjAGgAYQBmAHQAZQBuAAAAAwAAAAAAAAAAAAAAAgAAAAQAAAAAAAAAAwAAAAAAAAAAAP//////////AAAAAP////8="/></tab_browse><tab_sql><sql name="SQL 1">Select name from mannschaften 
+join (Select mannschaft as m, count(mannschaft) from spieler 
+group by mannschaft 
+having count(mannschaft) &lt; 11 or count(mannschaft) &gt; 23)
+on m = mannschaften.id</sql><sql name="SQL 2">Select Mannschaften.name from Mannschaften
+join Spieler on Spieler.mannschaft = mannschaften.id
+where Spieler.vorname = 'Gunter' and Spieler.name = 'Kemper'</sql><sql name="SQL 3">insert into spieler
+values (1, 'Erik', 'Salzberg', 1, 0, 'Torwart');
+insert into spieler
+values (2, 'Georg', 'Mueller', 1, 0, 'Verteidiger');
+insert into spieler
+values (3, 'Pavel', 'Merier', 1, 4, 'Angriff');
+insert into spieler
+values (4, 'Christine', 'Müller', 1, 2, 'Mittelffeld');
+insert into spieler
+values (5, 'Alfons', 'Saake', 5, 2, 'offensives Mittelfeld');
+insert into spieler
+values (6, 'Gunter', 'Kemper', 6, 1, 'Verteidiger');</sql><sql name="SQL 4">Select A.name, B.name, s.tore_heim - s.tore_gast from mannschaften as A, Spiel as s
+join mannschaften as B on A.name != B.name and s.heim</sql><sql name="SQL 5">Select A.name as AName, B.name as BName, 'Hinrunde' as Hin  from mannschaften as A, mannschaften as B
+where A.name != B.name and A.id &lt; B.id
+union 
+Select A.name as AName, B.name, 'Rückrunde' as Hin  from mannschaften as A, mannschaften as B
+where A.name != B.name and A.id &gt; B.id
+order by Hin</sql><sql name="SQL 6">--create table position(
+--	id integer primary key autoincrement,
+--	name varchar(20));
+	
+--insert into position(name)
+--select distinct spieler.position
+--from spieler
+
+--alter table spieler
+--add column position_id integer;
+--alter table spieler
+--add constraint foreign key(position_id) references position(id);
+
+--update spieler set position_id= (Select id from position where position.name = spieler.position)
+-- alter table spieler drop position</sql><sql name="SQL 7">insert into position (name) Select distinct position from spieler</sql><current_tab id="5"/></tab_sql></sqlb_project>
